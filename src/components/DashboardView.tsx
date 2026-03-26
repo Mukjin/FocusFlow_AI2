@@ -47,10 +47,10 @@ export default function DashboardView() {
   const todayRate = todayEvents.length > 0 ? Math.round((todayCompleted / todayEvents.length) * 100) : 0;
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 pb-8">
+    <div className="h-full overflow-y-auto custom-scrollbar p-6 space-y-8">
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="bg-white dark:bg-zinc-900 p-6 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-primary-50 dark:bg-primary-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
@@ -66,7 +66,7 @@ export default function DashboardView() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-zinc-900 p-6 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-emerald-50 dark:bg-emerald-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
@@ -82,7 +82,7 @@ export default function DashboardView() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-zinc-900 p-6 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-50 dark:bg-blue-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
@@ -98,7 +98,7 @@ export default function DashboardView() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-zinc-900 p-6 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 relative overflow-hidden group">
           <div className="absolute -right-6 -top-6 w-24 h-24 bg-amber-50 dark:bg-amber-900/20 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
@@ -120,7 +120,7 @@ export default function DashboardView() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Progress Section */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white dark:bg-zinc-900 p-8 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80">
+          <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-8 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-2">
                 <Award className="w-6 h-6 text-primary-500" />
@@ -147,14 +147,14 @@ export default function DashboardView() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50">
+              <div className="p-4 rounded-2xl bg-zinc-50/80 dark:bg-zinc-800/50 border border-zinc-200/50 dark:border-zinc-700/50">
                 <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 mb-2">
                   <CalendarIcon className="w-4 h-4" />
                   <span className="text-sm font-medium">오늘의 일정</span>
                 </div>
                 <p className="text-2xl font-bold text-zinc-900 dark:text-white">{todayEvents.length}개</p>
               </div>
-              <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-100 dark:border-zinc-700/50">
+              <div className="p-4 rounded-2xl bg-zinc-50/80 dark:bg-zinc-800/50 border border-zinc-200/50 dark:border-zinc-700/50">
                 <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 mb-2">
                   <CheckCircle2 className="w-4 h-4" />
                   <span className="text-sm font-medium">남은 일정</span>
@@ -165,7 +165,7 @@ export default function DashboardView() {
           </div>
 
           {/* Subject Breakdown */}
-          <div className="bg-white dark:bg-zinc-900 p-8 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80">
+          <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-8 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80">
             <h2 className="text-xl font-bold text-zinc-900 dark:text-white flex items-center gap-2 mb-6">
               <BookOpen className="w-6 h-6 text-emerald-500" />
               과목별 학습 통계
@@ -209,7 +209,7 @@ export default function DashboardView() {
 
         {/* Right Sidebar - Recent Activity or Summary */}
         <div className="space-y-6">
-          <div className="bg-gradient-to-br from-primary-500 to-purple-600 p-8 rounded-[24px] text-white shadow-md relative overflow-hidden">
+          <div className="bg-gradient-to-br from-primary-500 to-purple-600 p-8 rounded-3xl text-white shadow-md relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full blur-xl -ml-8 -mb-8"></div>
             
@@ -221,13 +221,13 @@ export default function DashboardView() {
               </div>
               
               <div className="space-y-4">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
                   <div className="text-primary-100 text-sm mb-1">총 계획된 시간</div>
                   <div className="font-bold text-xl">
                     {Math.floor(totalDurationMinutes / 60)}시간 {totalDurationMinutes % 60}분
                   </div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
                   <div className="text-primary-100 text-sm mb-1">실제 학습 시간</div>
                   <div className="font-bold text-xl">
                     {Math.floor(completedDurationMinutes / 60)}시간 {completedDurationMinutes % 60}분

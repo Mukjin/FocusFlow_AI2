@@ -261,42 +261,42 @@ export default function App() {
 
   if (!isDataLoaded) {
     return (
-      <div className="flex h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950">
+      <div className="flex h-screen items-center justify-center bg-white dark:bg-zinc-950">
         <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans selection:bg-primary-500/30 overflow-hidden">
+    <div className="flex h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans selection:bg-primary-500/30 overflow-hidden">
       {/* Mobile Sidebar Overlay */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed md:static inset-y-0 left-0 z-50 w-64 bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 flex flex-col transition-transform duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+        className={`fixed md:static inset-y-0 left-0 z-50 w-72 bg-zinc-50/80 dark:bg-zinc-900/80 backdrop-blur-xl border-r border-zinc-200/80 dark:border-zinc-800/80 flex flex-col transition-transform duration-300 ease-in-out ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
-        <div className="h-16 flex items-center justify-between px-6 border-b border-zinc-200 dark:border-zinc-800 flex-shrink-0">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary-600 rounded-xl flex items-center justify-center shadow-sm shadow-primary-500/30">
-              <Calendar className="w-5 h-5 text-white" />
+        <div className="h-16 flex items-center justify-between px-6 border-b border-zinc-200/80 dark:border-zinc-800/80 flex-shrink-0">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 bg-primary-600 rounded-xl flex items-center justify-center shadow-sm shadow-primary-500/20">
+              <Calendar className="w-4 h-4 text-white" />
             </div>
-            <h1 className="text-lg font-bold tracking-tight">FocusFlow_AI</h1>
+            <h1 className="text-[17px] font-bold tracking-tight text-zinc-900 dark:text-white">FocusFlow_AI</h1>
           </div>
           <button
-            className="md:hidden text-zinc-500"
+            className="md:hidden text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
             onClick={() => setIsSidebarOpen(false)}
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+        <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto custom-scrollbar">
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -309,34 +309,34 @@ export default function App() {
                   }
                 }}
                 disabled={item.disabled}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-2xl text-sm font-medium transition-all duration-200 ${
                   activeTab === item.id
-                    ? "bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400"
-                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-100"
-                } ${item.disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+                    ? "bg-white dark:bg-zinc-800 text-primary-600 dark:text-primary-400 shadow-sm border border-zinc-200/50 dark:border-zinc-700/50"
+                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-100 border border-transparent"
+                } ${item.disabled ? "opacity-40 cursor-not-allowed" : ""}`}
               >
-                <Icon className="w-5 h-5" />
+                <Icon className={`w-5 h-5 ${activeTab === item.id ? "text-primary-500" : ""}`} />
                 {item.label}
               </button>
             );
           })}
         </nav>
 
-        <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex-shrink-0">
-          <div className="mb-4">
-            <label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-2 block">
+        <div className="p-5 border-t border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100/50 dark:bg-zinc-900/50 flex-shrink-0">
+          <div className="mb-5">
+            <label className="text-[11px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3 block">
               테마 설정
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-2.5">
               {(["indigo", "rose", "emerald", "amber", "violet"] as const).map(
                 (t) => (
                   <button
                     key={t}
                     onClick={() => store.setTheme(t)}
-                    className={`w-6 h-6 rounded-full border-2 transition-transform hover:scale-110 ${
+                    className={`w-6 h-6 rounded-full border-2 transition-all duration-200 hover:scale-110 ${
                       store.theme === t
-                        ? "border-zinc-900 dark:border-white scale-110"
-                        : "border-transparent"
+                        ? "border-zinc-900 dark:border-white scale-110 shadow-sm"
+                        : "border-transparent opacity-70 hover:opacity-100"
                     }`}
                     style={{
                       backgroundColor: `var(--color-${t}-500)`,
@@ -348,33 +348,33 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mb-3">
-            <label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-2 block">
+          <div className="mb-4">
+            <label className="text-[11px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-3 block">
               Gemini API 설정
             </label>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2.5">
               <div className="relative">
-                <Key className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Key className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="password"
                   placeholder="API Key 입력"
                   value={apiKeyInput}
                   onChange={(e) => setApiKeyInput(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-primary-500 transition-shadow"
+                  className="w-full pl-10 pr-3 py-2.5 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl text-sm outline-none focus:ring-2 focus:ring-primary-500/50 transition-all placeholder:text-zinc-400"
                 />
               </div>
               <button
                 onClick={handleSaveKey}
-                className="w-full py-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors"
+                className="w-full py-2.5 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 rounded-xl text-sm font-semibold hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-sm"
               >
                 {isKeySaved ? "저장됨 ✓" : "저장하기"}
               </button>
             </div>
           </div>
 
-          <div className="flex items-center justify-center p-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+          <div className="flex items-center justify-center p-2.5 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-700/80 shadow-sm">
             {store.apiKey ? (
-              <div className="flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400">
+              <div className="flex items-center text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 <CheckCircle2 className="w-4 h-4 mr-1.5" /> AI 최적화 활성
               </div>
             ) : (
@@ -387,35 +387,35 @@ export default function App() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <main className="flex-1 flex flex-col min-w-0 overflow-hidden bg-white dark:bg-zinc-950">
         {/* Header */}
-        <header className="h-16 flex-shrink-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between px-4 sm:px-6 z-10">
-          <div className="flex items-center gap-3">
+        <header className="h-16 flex-shrink-0 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-200/80 dark:border-zinc-800/80 flex items-center justify-between px-6 z-10">
+          <div className="flex items-center gap-4">
             <button
-              className="md:hidden p-2 -ml-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="md:hidden p-2 -ml-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
               onClick={() => setIsSidebarOpen(true)}
             >
               <Menu className="w-5 h-5" />
             </button>
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+            <h2 className="text-[17px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               {navItems.find((item) => item.id === activeTab)?.label}
             </h2>
           </div>
 
           <div className="flex items-center gap-3">
             {store.dday > 0 && (
-              <div className="flex items-center gap-1.5 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-3 py-1.5 rounded-full border border-primary-100 dark:border-primary-800/50 font-bold tracking-tight text-sm">
+              <div className="flex items-center gap-1.5 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 px-3.5 py-1.5 rounded-full border border-primary-100/50 dark:border-primary-800/30 font-bold tracking-tight text-sm shadow-sm">
                 <Clock className="w-4 h-4" />
                 D-{store.dday}
               </div>
             )}
 
             {store.events.length > 0 && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2.5">
                 <button
                   onClick={handleRefineTasks}
                   disabled={isRefining}
-                  className="flex items-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white px-3 py-1.5 rounded-full transition-colors text-sm font-medium shadow-sm disabled:opacity-50"
+                  className="flex items-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition-all text-sm font-semibold shadow-sm hover:shadow-md disabled:opacity-50"
                 >
                   {isRefining ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
@@ -431,7 +431,7 @@ export default function App() {
                   <button
                     onClick={() => setIsExportMenuOpen(!isExportMenuOpen)}
                     disabled={isExporting}
-                    className="flex items-center gap-1.5 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-700 transition-colors text-sm font-medium shadow-sm disabled:opacity-50"
+                    className="flex items-center gap-1.5 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 px-4 py-2 rounded-full border border-zinc-200 dark:border-zinc-700 transition-all text-sm font-semibold shadow-sm hover:shadow-md disabled:opacity-50"
                   >
                     {isExporting ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -449,10 +449,10 @@ export default function App() {
                         className="fixed inset-0 z-40"
                         onClick={() => setIsExportMenuOpen(false)}
                       />
-                      <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-800 rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-700 py-1 z-50 overflow-hidden">
+                      <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 py-1.5 z-50 overflow-hidden">
                         <button
                           onClick={handleExportPDF}
-                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors text-left"
+                          className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors font-medium text-left"
                         >
                           <FileText className="w-4 h-4 text-red-500" />
                           PDF로 내보내기
@@ -462,7 +462,7 @@ export default function App() {
                             handleExportICS();
                             setIsExportMenuOpen(false);
                           }}
-                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors text-left"
+                          className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors font-medium text-left"
                         >
                           <CalendarIcon className="w-4 h-4 text-blue-500" />
                           구글 캘린더 (ICS)
@@ -477,10 +477,12 @@ export default function App() {
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-auto p-4 sm:p-6 lg:p-8">
-          <div className="max-w-6xl mx-auto animate-in fade-in duration-300 h-full">
+        <div className="flex-1 overflow-hidden relative">
+          <div className="w-full h-full animate-in fade-in duration-300">
             {activeTab === "setup" && (
-              <SetupForm onComplete={() => setActiveTab("calendar")} />
+              <div className="h-full overflow-auto p-4 sm:p-8 custom-scrollbar flex items-center justify-center">
+                <SetupForm onComplete={() => setActiveTab("calendar")} />
+              </div>
             )}
             {activeTab === "calendar" && <CalendarView />}
             {activeTab === "kanban" && <KanbanView />}

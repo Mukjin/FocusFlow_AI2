@@ -97,7 +97,7 @@ export default function PomodoroWidget() {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-6 right-6 z-50 bg-white dark:bg-zinc-900 rounded-full shadow-xl border border-zinc-200 dark:border-zinc-800 p-2 flex items-center gap-3 pr-4 animate-in slide-in-from-bottom-4">
+      <div className="fixed bottom-6 right-6 z-50 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-full shadow-xl border border-zinc-200/80 dark:border-zinc-800/80 p-2 flex items-center gap-3 pr-4 animate-in slide-in-from-bottom-4">
         <button 
           onClick={toggleTimer}
           className={`w-10 h-10 rounded-full flex items-center justify-center text-white ${mode === 'work' ? 'bg-primary-600' : 'bg-emerald-500'}`}
@@ -112,11 +112,11 @@ export default function PomodoroWidget() {
             {formatTime(timeLeft)}
           </span>
         </div>
-        <div className="flex items-center gap-1 ml-2 border-l border-zinc-200 dark:border-zinc-800 pl-2">
-          <button onClick={() => setIsMinimized(false)} className="p-1.5 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800">
+        <div className="flex items-center gap-1 ml-2 border-l border-zinc-200/80 dark:border-zinc-800/80 pl-2">
+          <button onClick={() => setIsMinimized(false)} className="p-1.5 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-md hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50">
             <Maximize2 className="w-4 h-4" />
           </button>
-          <button onClick={() => setIsOpen(false)} className="p-1.5 text-zinc-400 hover:text-red-500 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800">
+          <button onClick={() => setIsOpen(false)} className="p-1.5 text-zinc-400 hover:text-red-500 rounded-md hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50">
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -125,9 +125,9 @@ export default function PomodoroWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-80 bg-white dark:bg-zinc-900 rounded-[24px] shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden animate-in slide-in-from-bottom-4">
+    <div className="fixed bottom-6 right-6 z-50 w-80 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden animate-in slide-in-from-bottom-4">
       {/* Header */}
-      <div className="flex items-center justify-between p-5 border-b border-zinc-100 dark:border-zinc-800/50">
+      <div className="flex items-center justify-between p-5 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/50">
         <h3 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
           <div className="w-8 h-8 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center">
             <Brain className="w-4 h-4 text-primary-500 dark:text-primary-400" />

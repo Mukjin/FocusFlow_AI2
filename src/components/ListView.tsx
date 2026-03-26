@@ -56,7 +56,7 @@ export default function ListView() {
 
   if (store.events.length === 0) {
     return (
-      <div className="max-w-4xl mx-auto h-[60vh] flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500">
+      <div className="h-full m-6 flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl rounded-3xl border border-zinc-200/50 dark:border-zinc-800/50">
         <div className="w-24 h-24 mb-6 rounded-full bg-zinc-100 dark:bg-zinc-800/50 flex items-center justify-center">
           <Inbox className="w-12 h-12 text-zinc-300 dark:text-zinc-600" />
         </div>
@@ -67,10 +67,10 @@ export default function ListView() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8 pb-8">
+    <div className="h-full overflow-y-auto custom-scrollbar p-6 space-y-8">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="bg-white dark:bg-zinc-900 p-6 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 flex items-center gap-5">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 flex items-center gap-5">
           <div className="w-14 h-14 rounded-2xl bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
             <CalendarDays className="w-7 h-7 text-primary-500" />
           </div>
@@ -79,7 +79,7 @@ export default function ListView() {
             <span className="text-2xl font-bold text-zinc-900 dark:text-white">{stats.days}일</span>
           </div>
         </div>
-        <div className="bg-white dark:bg-zinc-900 p-6 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 flex items-center gap-5">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 flex items-center gap-5">
           <div className="w-14 h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center flex-shrink-0">
             <Clock className="w-7 h-7 text-emerald-500" />
           </div>
@@ -88,7 +88,7 @@ export default function ListView() {
             <span className="text-2xl font-bold text-zinc-900 dark:text-white">{stats.time}</span>
           </div>
         </div>
-        <div className="bg-white dark:bg-zinc-900 p-6 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 flex items-center gap-5">
+        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-6 rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 flex items-center gap-5">
           <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
             <BookOpen className="w-7 h-7 text-amber-500" />
           </div>
@@ -102,19 +102,19 @@ export default function ListView() {
       {/* List by Subject */}
       <div className="space-y-8">
         {Object.entries(groupedEvents).map(([subject, events]) => (
-          <div key={subject} className="bg-white dark:bg-zinc-900 rounded-[24px] shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden">
-            <div className="px-6 py-5 border-b border-zinc-100 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/20 flex justify-between items-center">
+          <div key={subject} className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden">
+            <div className="px-6 py-5 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/20 flex justify-between items-center">
               <h3 className="text-lg font-bold text-zinc-900 dark:text-white flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center">
                   <BookOpen className="w-4 h-4 text-primary-600 dark:text-primary-400" />
                 </div>
                 {subject}
               </h3>
-              <span className="text-sm font-bold bg-white dark:bg-zinc-800 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400">
+              <span className="text-sm font-bold bg-white dark:bg-zinc-800 px-3 py-1 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 shadow-sm">
                 총 {(events as any[]).length}개 일정
               </span>
             </div>
-            <div className="divide-y divide-zinc-100 dark:divide-zinc-800/50">
+            <div className="divide-y divide-zinc-200/80 dark:divide-zinc-800/80">
               {(events as any[]).map(event => (
                 <div key={event.id} className={`p-5 flex flex-col sm:flex-row sm:items-center gap-5 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/30 transition-colors ${event.completed ? 'opacity-60 grayscale-[0.2]' : ''}`}>
                   <div className="w-36 flex-shrink-0 flex items-center gap-3">

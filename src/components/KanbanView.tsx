@@ -181,7 +181,7 @@ export default function KanbanView() {
 
   if (store.events.length === 0) {
     return (
-      <div className="h-[calc(100vh-140px)] flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500">
+      <div className="h-full m-6 flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl rounded-3xl border border-zinc-200/50 dark:border-zinc-800/50">
         <div className="w-20 h-20 mb-6 rounded-full bg-zinc-100 dark:bg-zinc-800/50 flex items-center justify-center">
           <Inbox className="w-10 h-10 text-zinc-300 dark:text-zinc-600" />
         </div>
@@ -192,10 +192,10 @@ export default function KanbanView() {
   }
 
   return (
-    <div className="h-[calc(100vh-140px)] flex flex-col lg:flex-row gap-6 overflow-x-auto pb-4 px-2">
+    <div className="h-full flex flex-col lg:flex-row gap-6 overflow-x-auto p-6">
       {/* Upcoming Column */}
       <div 
-        className="flex-1 min-w-[320px] max-w-[400px] flex flex-col bg-zinc-50/80 dark:bg-zinc-900/40 rounded-[24px] border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden shadow-sm"
+        className="flex-1 min-w-[320px] max-w-[400px] flex flex-col bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-xl rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden shadow-sm"
         onDragOver={handleDragOver}
         onDrop={(e) => handleDrop(e, 'upcoming')}
       >
@@ -221,7 +221,7 @@ export default function KanbanView() {
 
       {/* Today Column */}
       <div 
-        className="flex-1 min-w-[320px] max-w-[400px] flex flex-col bg-primary-50/50 dark:bg-primary-900/10 rounded-[24px] border border-primary-100 dark:border-primary-900/30 overflow-hidden shadow-sm ring-1 ring-primary-500/5 dark:ring-primary-500/10"
+        className="flex-1 min-w-[320px] max-w-[400px] flex flex-col bg-primary-50/50 dark:bg-primary-900/10 backdrop-blur-xl rounded-3xl border border-primary-100 dark:border-primary-900/30 overflow-hidden shadow-sm ring-1 ring-primary-500/5 dark:ring-primary-500/10"
         onDragOver={handleDragOver}
         onDrop={(e) => handleDrop(e, 'today')}
       >
@@ -247,7 +247,7 @@ export default function KanbanView() {
 
       {/* Done Column */}
       <div 
-        className="flex-1 min-w-[320px] max-w-[400px] flex flex-col bg-zinc-50/80 dark:bg-zinc-900/40 rounded-[24px] border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden shadow-sm"
+        className="flex-1 min-w-[320px] max-w-[400px] flex flex-col bg-zinc-50/80 dark:bg-zinc-900/40 backdrop-blur-xl rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden shadow-sm"
         onDragOver={handleDragOver}
         onDrop={(e) => handleDrop(e, 'done')}
       >

@@ -139,7 +139,7 @@ export default function CalendarView() {
 
   if (store.events.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-zinc-500 dark:text-zinc-400 bg-white dark:bg-zinc-900 rounded-[24px] shadow-sm border border-zinc-200 dark:border-zinc-800">
+      <div className="flex flex-col items-center justify-center h-full text-zinc-500 dark:text-zinc-400 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80">
         <div className="w-20 h-20 mb-6 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center">
           <CalendarIcon className="w-10 h-10 text-primary-500 dark:text-primary-400" />
         </div>
@@ -257,10 +257,10 @@ export default function CalendarView() {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-140px)]">
-      <div className="flex-1 flex flex-col bg-white dark:bg-zinc-900 rounded-[24px] shadow-sm border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+    <div className="flex flex-col lg:flex-row gap-0 h-full">
+      <div className="flex-1 flex flex-col bg-white dark:bg-zinc-950 overflow-hidden">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border-b border-zinc-100 dark:border-zinc-800/50 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between p-5 border-b border-zinc-200/80 dark:border-zinc-800/80 gap-4">
           <div className="flex items-center gap-4">
             <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 min-w-[140px] tracking-tight">
               {headerTitle}
@@ -316,7 +316,7 @@ export default function CalendarView() {
 
       {/* Side Panel */}
       {selectedDate && (
-        <div className="w-full lg:w-80 flex-shrink-0 animate-in slide-in-from-right-4 duration-300">
+        <div className="w-full lg:w-80 flex-shrink-0 animate-in slide-in-from-right-4 duration-300 border-l border-zinc-200/80 dark:border-zinc-800/80 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-xl">
           <DayDetailPanel 
             date={selectedDate} 
             events={eventsByDate.get(format(selectedDate, 'yyyy-MM-dd')) || []} 

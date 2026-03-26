@@ -94,7 +94,13 @@ export default function SetupForm({ onComplete }: { onComplete: () => void }) {
       const ruleEvents = generateRuleBasedEvents(dday, startDate, goals, goalImportance, timePerDay, restDay, prefTime);
       
       // Step 2: Gemini enhancement
-      const finalEvents = await enhanceEventsWithGemini(ruleEvents, goals, extraRequest, store.apiKey);
+      let finalEvents = ruleEvents;
+      try {
+        finalEvents = await enhanceEventsWithGemini(ruleEvents, goals, extraRequest, store.apiKey);
+      } catch (geminiError) {
+        console.error("Gemini enhancement failed:", geminiError);
+        alert("AI 일정 구체화에 실패하여 기본 일정으로 생성합니다.");
+      }
       
       // Add IDs
       const eventsWithIds = finalEvents.map((e, i) => ({ ...e, id: Date.now() + i }));
@@ -117,7 +123,7 @@ export default function SetupForm({ onComplete }: { onComplete: () => void }) {
   const prevStep = () => setStep(s => Math.max(s - 1, 1));
 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white dark:bg-zinc-900 rounded-[24px] shadow-sm border border-zinc-200 dark:border-zinc-800">
+    <div className="w-full max-w-3xl p-8 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-3xl shadow-sm border border-zinc-200/80 dark:border-zinc-800/80">
       
       {/* Progress Indicator */}
       <div className="mb-8">

@@ -56,8 +56,8 @@ export default function DayDetailPanel({ date, events, onClose }: Props) {
   };
 
   return (
-    <div className="bg-white dark:bg-zinc-900 rounded-[24px] shadow-sm border border-zinc-200 dark:border-zinc-800 h-full flex flex-col overflow-hidden">
-      <div className="p-5 border-b border-zinc-100 dark:border-zinc-800/50 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-900/50">
+    <div className="h-full flex flex-col overflow-hidden">
+      <div className="p-5 border-b border-zinc-200/80 dark:border-zinc-800/80 flex items-center justify-between bg-zinc-50/50 dark:bg-zinc-900/50">
         <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
           {format(date, 'M월 d일 (EEEE)', { locale: ko })}
         </h3>
