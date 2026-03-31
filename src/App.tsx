@@ -8,6 +8,7 @@ import ListView from "./components/ListView";
 import KanbanView from "./components/KanbanView";
 import DashboardView from "./components/DashboardView";
 import PomodoroWidget from "./components/PomodoroWidget";
+import LandingView from "./components/LandingView";
 import { PdfExportTemplate } from "./components/PdfExportTemplate";
 import {
   Calendar,
@@ -41,6 +42,7 @@ export default function App() {
   const [isExportMenuOpen, setIsExportMenuOpen] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const [isRefining, setIsRefining] = useState(false);
+  const [isAppStarted, setIsAppStarted] = useState(false);
   const pdfRef = useRef<HTMLDivElement>(null);
 
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -265,6 +267,10 @@ export default function App() {
         <Loader2 className="w-8 h-8 animate-spin text-primary-500" />
       </div>
     );
+  }
+
+  if (!isAppStarted) {
+    return <LandingView onStart={() => setIsAppStarted(true)} />;
   }
 
   return (
